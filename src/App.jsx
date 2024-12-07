@@ -1,11 +1,14 @@
-import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import UMainPage from "./routes/UMainPage/UMainPage";
+import { Route, Routes } from "react-router-dom";
+import Homepage from "./routes/Homepage";
+import Login from "./routes/Auth/Login";
 
 function App() {
   return (
     <Routes>
-      <Route index path="/auth" element={<UMainPage />} />
+      <Route path="/" element={<Homepage />} />
+
+      <Route path="/auth/login" element={<Login />} />
     </Routes>
   );
 }
