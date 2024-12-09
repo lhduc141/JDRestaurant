@@ -6,7 +6,7 @@ import Login from "./routes/Auth/Login";
 // User
 import UserHome from "./routes/User/UserMainpage/UserHome";
 import UserAbout from "./routes/User/UserMainpage/UserAbout";
-import UserMenu from "./routes/User/UserMainpage/UserMenu";
+import UserMenu from "./routes/User/UserMenu/UserMenu";
 import UserContact from "./routes/User/UserMainpage/UserContact";
 import UserLayout from "./routes/User/UserLayout";
 

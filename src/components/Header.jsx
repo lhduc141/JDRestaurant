@@ -14,7 +14,7 @@ const Header = () => {
   const isHome = path === "/user/home";
   const isAboutOrContact = path === "/user/about" || path === "/user/contact";
   // const isAdmin = path.startsWith("/admin");
-  const isAdmin = true;
+  const isAdmin = false;
 
   const bgStyle =
     isUser && isHome ? "bg-black" : isUser ? "bg-cover bg-center" : "bg-none";
