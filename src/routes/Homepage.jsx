@@ -11,24 +11,24 @@ const Homepage = () => {
   return (
     <div className="bg-[#000011] flex w-screen h-screen justify-between">
       <div className="text-white w-1/2  align-middle pl-[200px] pt-[150px]">
-        <Typography.Text className="text-[#F8AFA6] text-[66px]">
+        <Typography.Text className=" font-rufina text-[#F8AFA6] text-[66px]">
           Welcome To{" "}
         </Typography.Text>
         <br />{" "}
-        <Typography.Text className="text-[#ADEBFF] text-[96px]">
+        <Typography.Text className=" font-rufina text-[#ADEBFF] text-[72px]">
           JD Restaurant
         </Typography.Text>
         <Divider />
-        <Typography.Text className="text-[48px] text-white font-normal">
+        <Typography.Text className=" font-rufina text-[48px] text-white font-normal">
           JDへようこそ
         </Typography.Text>
         <Divider />
         <div className="text-center space-y-8">
           <button
             onClick={login}
-            className="text-white bg-[#F9D0D0] py-5 px-64 rounded-lg"
+            className="text-white bg-[#F9D0D0] py-5 px-24 rounded-lg"
           >
-            <Typography.Text className="text-black text-[2rem] font-bold">
+            <Typography.Text className=" font-rufina text-black text-[2rem] font-bold">
               Log In
             </Typography.Text>
           </button>

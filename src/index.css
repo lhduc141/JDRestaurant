@@ -1,3 +1,23 @@
+@import "@fontsource/rufina";
+
+@font-face {
+  font-family: 'Great Vibes';
+  src: url('../assets/fonts/GreatVibes-Regular.ttf') format('truetype');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Rufina", serif, 'Great Vibes', cursive;
+  background-color: #000011;
+}
+
+footer {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),  url('./assets/footer.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 200px;
+}
