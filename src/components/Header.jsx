@@ -1,9 +1,22 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import bgMenu from "../assets/bgMenu.png";
 import bgAboutContact from "../assets/bgAboutContact.png";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutAction } from "../service/userReducer/userReducer";
+import { message } from "antd";
 
 const Header = () => {
   const path = useLocation().pathname;
+  const { roleID } = useSelector((state) => state.userReducer);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const logout = () => {
+    dispatch(logoutAction());
+
+    navigate("/auth/login");
+    message.success("Logout success");
+  };
 
   const pageName = path
     .replace("/user/", "")
@@ -14,7 +27,7 @@ const Header = () => {
   const isHome = path === "/user/home";
   const isAboutOrContact = path === "/user/about" || path === "/user/contact";
   // const isAdmin = path.startsWith("/admin");
-  const isAdmin = false;
+  const isAdmin = roleID == 2 ? true : false;
 
   const bgStyle =
     isUser && isHome ? "bg-black" : isUser ? "bg-cover bg-center" : "bg-none";
@@ -37,7 +50,7 @@ const Header = () => {
   const adminLinks = [
     { name: "Home", path: "/admin/home" },
     { name: "Menu", path: "/admin/menu" },
-    { name: "Dashboard", path: "/admin/dashboard" },
+    // { name: "Dashboard", path: "/admin/dashboard" },
     { name: "Food Track", path: "/admin/food-track" },
   ];
 
@@ -70,7 +83,10 @@ const Header = () => {
 
         {/* Logout Button */}
         <div className="font-rufina text-[24px]">
-          <button className="hover:text-[#ADEBFF] ease-in-out text-white">
+          <button
+            onClick={logout}
+            className="hover:text-[#ADEBFF] ease-in-out text-white"
+          >
             Logout
           </button>
         </div>

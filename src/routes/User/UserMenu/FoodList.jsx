@@ -1,16 +1,36 @@
-import React from "react";
-import PropTypes from "prop-types"; // Import PropTypes
+import PropTypes from "prop-types";
 import { Typography } from "antd";
+import { cartLocal } from "../../../service/cartLocal";
+import { useDispatch } from "react-redux";
+import { updateCart } from "../../../service/userReducer/userReducer";
 
 const FoodList = ({ list }) => {
+  const dispatch = useDispatch();
+
+  const addToCart = (item) => {
+    let addItem = {
+      itemID: item.itemID,
+      quantity: 1,
+      note: "",
+      itemInfor: {
+        itemName: item.itemName,
+        preparation_time: item.preparation_time,
+        price: item.price,
+      },
+    };
+    cartLocal.addToCart(addItem);
+
+    dispatch(updateCart());
+  };
+
   if (!list || list.length === 0) {
-    return null; // Return null if the list is empty or undefined
+    return null;
   }
 
   return (
     <div>
       <h1 className="font-rufina text-[40px] mb-8 text-[#003459]">
-        {list[0].type_of_food}
+        {list[0]?.type_of_food}
       </h1>
       <div className="space-y-8">
         {list.map((item) => (
@@ -30,11 +50,14 @@ const FoodList = ({ list }) => {
             </div>
 
             <div className="flex flex-col justify-start space-y-4">
-              <Typography.Text className="text-2xl text-[#F8AFA6] font-bold">
-                {item.price} $
+              <Typography.Text className="text-2xl text-[#F8AFA6] font-bold text-center">
+                {item.price}$
               </Typography.Text>
               <div>
-                <button className="px-8 py-4 bg-[#F8AFA6] text-white rounded-xl">
+                <button
+                  onClick={() => addToCart(item)}
+                  className="px-8 py-4 bg-[#F8AFA6] text-white rounded-xl"
+                >
                   Add
                 </button>
               </div>
@@ -46,18 +69,19 @@ const FoodList = ({ list }) => {
   );
 };
 
-// PropTypes Validation
-FoodList.propTypes = {
-  list: PropTypes.arrayOf(
-    PropTypes.shape({
-      itemID: PropTypes.string.isRequired,
-      itemName: PropTypes.string.isRequired,
-      descriptions: PropTypes.string,
-      preparation_time: PropTypes.number.isRequired,
-      price: PropTypes.number.isRequired,
-      type_of_food: PropTypes.string.isRequired,
-    })
-  ).isRequired, // list should be an array of objects with the specified shape
-};
+FoodList.propTypes = [
+  {
+    list: PropTypes.arrayOf(
+      PropTypes.shape({
+        itemID: PropTypes.string.isRequired,
+        itemName: PropTypes.string.isRequired,
+        descriptions: PropTypes.string,
+        preparation_time: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired,
+        type_of_food: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  },
+];
 
 export default FoodList;

@@ -16,6 +16,8 @@ import AdminDashboard from "./routes/Admin/AdminDashboard/AdminDashboard";
 import AdminMenu from "./routes/Admin/AdminMenu/AdminMenu";
 import AdminHome from "./routes/Admin/AdminHome/AdminHome";
 import AdminFoodTrack from "./routes/Admin/AdminFoodTrack/AdminFoodTrack";
+import Checkout from "./routes/User/UserCheckout/Checkout";
+import AddTable from "./components/AddTable";
 
 function App() {
   return (
@@ -25,15 +27,17 @@ function App() {
       {/* Authentication */}
       <Route path="/auth/login" element={<Login />} />
 
+      <Route path="add-table" element={<AddTable />} />
       {/*User Main page*/}
+      {/* <Route element={<AuthWrapper />}> */}
       <Route path="/user" element={<UserLayout />}>
         <Route path="home" element={<UserHome />} />
         <Route path="about" element={<UserAbout />} />
-
         <Route path="menu" element={<UserMenu />} />
-
         <Route path="contact" element={<UserContact />} />
       </Route>
+      <Route path="checkout" element={<Checkout />} />
+      {/* </Route> */}
 
       {/* Admin  */}
       <Route path="/admin" element={<AdminLayout />}>

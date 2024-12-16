@@ -1,12 +1,31 @@
 import { useNavigate } from "react-router-dom";
 import img from "../../assets/bghp.png";
-import { Divider, Form, Typography, Button, Input } from "antd";
+import { Divider, Form, Typography, Button, Input, message } from "antd";
+import { useDispatch } from "react-redux";
+import { postLogin } from "../../service/userReducer/userThunk";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const onFinish = (values) => {
-    console.log("Success:", values);
-    navigate("/user/home");
+    dispatch(postLogin(values))
+      .then((res) => {
+        if (res) {
+          message.success("Đăng nhập thành công");
+          console.log(res);
+          switch (res.payload.roleID) {
+            case 1:
+              navigate("/add-table");
+              break;
+            case 2:
+              navigate("/admin/home");
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        message.error("Sai tài khoản / mật khẩu");
+      });
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -38,7 +57,7 @@ const Login = () => {
             className="text-left w-3/4 space-y-12"
           >
             <Form.Item
-              name="username"
+              name="email"
               rules={[
                 {
                   required: true,

@@ -1,12 +1,15 @@
 import { Outlet } from "react-router-dom";
 import Header from "../../components/Header";
+import AuthWrapper from "../../components/AuthWrapper";
 
 const UserLayout = () => {
   return (
-    <div>
-      <Header />
-      <Outlet />
-    </div>
+    <AuthWrapper>
+      <div>
+        <Header />
+        <Outlet />
+      </div>
+    </AuthWrapper>
   );
 };
 
